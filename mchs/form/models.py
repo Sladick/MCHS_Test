@@ -19,7 +19,7 @@ class People(models.Model):
     name = models.CharField(max_length=55)
     last_name = models.CharField(max_length=55)
     patronymic = models.CharField(max_length=55)
-    test_number = models.ForeignKey('Test', on_delete=models.CASCADE, default=1)
+    test_number = models.ForeignKey('Test', on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name

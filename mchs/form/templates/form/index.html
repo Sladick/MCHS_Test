@@ -5,35 +5,13 @@
     <title>Title222</title>
 </head>
 <body>
-       <form id="myForm" action="" method="post" class="">
-           {% csrf_token %}
-           {% for player in form3 %}
-               {{ player.errors }}
-               {{ player.label_tag }}
-               {{ player}}
-           {% endfor %}
-           <hr>
-           {% for field1 in form1 %}
-               {{ field1.errors }}
-               {{ field1.label_tag }} : {{ field1 }}
-           {% endfor %}
-           <hr>
-           {{ form1.number.management_form }}
-           {% for field2 in form2 %}
-               {{ field2.errors }}
-               {{ field2.label_tag }} : {{ field2 }}
-           {% endfor %}
-           {{ form2.test_number.management_form }}
+   <form action="" method="POST">
+        {% csrf_token %}
+        {{ test.as_p }}
+        {{ plan_removal.as_p }}
+        {{ people.as_p }}
+        <button type="submit">Create New</button>
+    </form>
 
-
-        </table>
-        <button type="submit" class="btn btn-primary">save</button>
-
-      </form>
-<script>
-    $(function () {
-        $('#myForm tbody tr').formset();
-    })
-</script>
 </body>
 </html>
