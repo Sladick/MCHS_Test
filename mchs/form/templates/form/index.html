@@ -5,13 +5,51 @@
     <title>Title222</title>
 </head>
 <body>
-   <form action="" method="POST">
+   <form action="" id="form" method="POST">
         {% csrf_token %}
         {{ test.as_p }}
+       <div id="plan">
         {{ plan_removal.as_p }}
+      </div>
+       <button onclick="planFunction()">+</button>
+       <button onclick="deleteElem('plan')">-</button>
+       <div id="people">
         {{ people.as_p }}
-        <button type="submit">Create New</button>
+       </div>
+       <button onclick="peopleFunction()">+</button>
+       <button onclick="deleteElem('people')">-</button>
+       <button type="submit">Сохранить</button>
     </form>
+<script>
 
+     function planFunction() {
+        let elmnt = document.getElementById("plan");
+        let cln = elmnt.cloneNode(true);
+        console.log(cln);
+        document.getElementById('form').appendChild(cln);
+    }
+    function peopleFunction() {
+        let elmnt = document.getElementById("people");
+        let cln = elmnt.cloneNode(true);
+        console.log(cln);
+        document.getElementById('form').appendChild(cln);
+    }
+    function deleteElem(elementId){
+        let elementCollection = new Array();
+        let allElements = document.getElementsByTagName("*");
+        for(i = 0; i < allElements.length; i++){
+            if(allElements[i].id == elementId)
+                elementCollection.push(allElements[i]);
+            }
+        if (elementCollection.length > 1 ){
+            document.getElementById(elementId).parentElement.removeChild(document.getElementById(elementId));
+        }
+
+    }
+
+
+
+
+</script>
 </body>
 </html>
