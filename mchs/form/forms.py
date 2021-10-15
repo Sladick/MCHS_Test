@@ -1,20 +1,32 @@
-from .models import Test, People, PlanRemoval
-from django.forms import ModelForm
+from django import forms
+from django.forms.formsets import formset_factory
+from .models import *
 
 
-class TestForm(ModelForm):
+class TeamForm(forms.ModelForm):
     class Meta:
-        model = Test
-        fields = ('title', 'rating', 'limitations')
+        model = Plan
+        fields = '__all__'
 
 
-class PlanRemovalForm(ModelForm):
-    class Meta:
-        model = PlanRemoval
-        fields = ('plan',)
-
-
-class PeopleForm(ModelForm):
+class PeopleForm(forms.ModelForm):
     class Meta:
         model = People
-        fields = ('name', 'last_name', 'patronymic')
+        fields = '__all__'
+
+
+PlanFormset = formset_factory(TeamForm)
+PeopleFormset = formset_factory(PeopleForm)
+
+
+class TestForm(forms.Form):
+    title = forms.CharField()
+    rating = forms.FloatField()
+    limitations = forms.CharField()
+    many_team = PlanFormset()
+    many_people = PeopleFormset()
+
+
+
+
+
