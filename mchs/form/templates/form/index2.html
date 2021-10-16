@@ -1,0 +1,59 @@
+<html>
+<head>
+    <title>gffdfdf</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="/static/jquery.formset.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+    <form id="myForm" action="" method="post" class="">
+        {% csrf_token %}
+        {% for field in form %}
+                {{ field.errors }}
+                {{ field.label_tag }} : {{ field }}
+
+                {{ form.many_plan.management_form }}
+                {{ form.many_people.management_form }}
+        {% endfor %}
+        <table id="table-product" class="table">
+            {% for field in form.many_plan %}
+                <tbody class="player-instances">
+                    <tr>
+                        <td>{{ field.label }}{{ field }}</td>
+                    </tr>
+                </tbody>
+
+            {% endfor %}
+        </table>
+
+         <table id="table-product2" class="table">
+            {% for field in form.many_people %}
+                 <tbody2 class="player-instances">
+
+                        <tr2>
+                            {{ field.name.label }}{{ field.name }}
+                            {{ field.last_name.label }}{{ field.last_name }}
+                            {{ field.patronymic.label }}{{ field.patronymic }}
+                        </tr2>
+
+                 </tbody2>
+            {% endfor %}
+         </table>
+        <button type="submit" class="btn btn-primary">save</button>
+    </form>
+</div>
+<script>
+    $(function () {
+        $('#myForm tbody tr').formset();
+    })
+     $(function () {
+        $('#myForm tbody2 tr2').formset();
+    })
+</script>
+</body>
+</html>

@@ -8,13 +8,13 @@ def post(request):
     if request.method == 'POST':
         form = TestForm(request.POST)
 
-        team_instances = PlanFormset(request.POST)
+        plan_instances = PlanFormset(request.POST)
         people_instances = PeopleFormset(request.POST)
 
         if form.is_valid():
-            if team_instances.is_valid() and people_instances.is_valid():
-                print('!!!!', team_instances)
-                print('!!!!', people_instances)
+            if plan_instances.is_valid() and people_instances.is_valid():
+                print('!!!!', plan_instances)
+
                 team = Test(title=form.cleaned_data['title'], rating=form.cleaned_data['rating'], limitations=form.cleaned_data['limitations'])
                 team.save()
                 args = {'form': form}
@@ -24,10 +24,10 @@ def post(request):
                         team.many_people.add(x)
                     else:
                         print('-----------error occur')
-                for item in team_instances:
+                for item in plan_instances:
                     if item.is_valid():
                         x = item.save()
-                        team.many_team.add(x)
+                        team.many_plan.add(x)
                     else:
                         print('-----------error occur')
                 team.save()

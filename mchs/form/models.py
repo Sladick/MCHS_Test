@@ -5,7 +5,7 @@ class Test(models.Model):
     title = models.CharField(max_length=155)
     rating = models.FloatField()
     limitations = models.TextField()
-    many_team = models.ManyToManyField('Plan')
+    many_plan = models.ManyToManyField('Plan')
     many_people = models.ManyToManyField('People')
 
     def __str__(self):
